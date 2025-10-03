@@ -278,8 +278,8 @@ export let getEmployeeById = async (req, res) => {
         }
 
 
-        const employeeData = await employees
-            .findOne({}, { createdAt: 0, updatedAt: 0, __v: 0 })
+       const employeeData = await employees.findById(id, { createdAt: 0, updatedAt: 0, __v: 0 });
+
 
 
         if (!employeeData) {
