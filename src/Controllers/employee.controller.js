@@ -18,6 +18,17 @@ export let addEmployee = async (req, res) => {
             })
         }
 
+        let isPhoneValid = validator.isMobilePhone(phone, "en-IN");
+
+
+        if (!isPhoneValid) {
+            return res.status(400).json({
+                status: false,
+                message: "Phone Number IS Not valid",
+                data: null
+            })
+        }
+
         let isEmployeeExists = await employees.findOne({ email: email }); //checking if email is exists  or not in db
 
         if (isEmployeeExists) {
@@ -162,6 +173,17 @@ export let updateEmployee = async (req, res) => {
             })
         }
 
+        let isPhoneValid = validator.isMobilePhone(phone, "en-IN");
+
+        if (!isPhoneValid) {
+            return res.status(400).json({
+                status: false,
+                message: "Phone Number IS Not valid",
+                data: null
+            })
+        }
+
+
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({
@@ -215,7 +237,7 @@ export let updateEmployee = async (req, res) => {
 
 
 
-        if (updateEmployees.modifiedCount == 1) {            
+        if (updateEmployees.modifiedCount == 1) {
             return res.status(200).json({
                 status: true,
                 message: "Employee Data Updated Sucessfully",
