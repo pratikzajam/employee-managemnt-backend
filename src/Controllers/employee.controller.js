@@ -1,4 +1,4 @@
-import validator from "email-validator"
+import validator from "validator"
 import employees from '../Models/employee.model.js'
 import mongoose from 'mongoose'
 
@@ -8,7 +8,7 @@ export let addEmployee = async (req, res) => {
         const { name, email, position, age, phone } = req.body || {};
 
 
-        let isEmailValid = validator.validate(email);  //checking if email is valid or not
+        let isEmailValid = validator.isEmail(email);  //checking if email is valid or not
 
         if (!isEmailValid) {
             return res.status(409).json({
