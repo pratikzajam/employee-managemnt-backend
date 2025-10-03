@@ -48,7 +48,7 @@ export let addEmployee = async (req, res) => {
         })
 
 
-        let saveEmployee = await newEmployee.save();    //Saving the user in db
+        let saveEmployee = await newEmployee.save();    //Saving the user in database
 
 
         if (saveEmployee._id) {
